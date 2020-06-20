@@ -1,0 +1,27 @@
+<style>
+
+body {
+  background-color: black;
+}
+
+h1 {
+  color: gold;
+  margin-left: 40px;
+} 
+
+h2 {
+  color: gold;
+  margin-left: 40px;
+} 
+
+p {
+  color: gold;
+  margin-left: 40px;
+} 
+
+
+.footer {
+  background-color: #f1f1f1;
+  padding: 10px;
+}
+</style>
