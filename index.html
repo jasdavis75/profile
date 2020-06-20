@@ -67,7 +67,7 @@ These are issued by the NSA, the Committee on National Security Systems (CNSS) a
 
 I am also a carer for my Mum, and I am currently also studying for my CCIE Enterprise certification.
 
-In what little spare time I have left, I enjoy taking a drive in the countryside, or going for a walk along the beach somewhere.  
+In what little spare time I have left, I enjoy taking a drive in the countryside, or going for a walk along the sea somewhere.  
 That is how I zone out and recharge. 
 I enjoy watching movies, and I can’t resist a good wood oven pizza with friends.  Anchovies are my friends.
 I enjoy AFL – Sadly, I am an Adelaide Crows supporter.  Things are not good at the moment.  
@@ -196,6 +196,82 @@ astrology or tarot.
 </pre>
 
 
+<h2>Project Idea</h2>
+
+<h3>Overview</h3>
+<pre>
+My idea is for a software tool for use in large networks.  There are already many monitoring tools around, which can give you analytics 
+for network traffic.  I use PRTG currently, and get alerts regarding heavy useage, and tunnel interfaces going down, high CPU and similar 
+alarms.  
+However, one thing that I do on a daily basis is troubleshoot specific issues, such as complaints on excessive load times or excessive 
+download times.
+Currently to investigate this is a manual process.  I need to connect to a router, run some commands on interfaces to get the statistics 
+and check for CRC errors, queue drops, both input and output queues.  If I have a copy of this data from a previous period of time, 
+I can then do a manual comparison to see if output drops are incrementing.
+All this for me is currently manual.  I would like to automate the recording and comparison of this data.  
+</pre>
+<h3>Motivation</h3>
+<pre>
+My motivation for this is to primarily improve troubleshooting.
+Make troubleshooting more accurate, faster, and even to allow me to be more proactive – to resolve problems before they become an outage.  
+The largest impact on the users that I support are complete outages.  Being able to detect an increasing rate of output or input drops 
+over a week, would give me early warning of a potential problem.  This way, instead of waiting for a user to complain, and log an incident 
+for investigation, I would be able to be proactive, and start investigating the errors, and then be able to hopefully prevent the outage.  
+</pre>
+<h3>Description</h3>
+<pre>
+I imagine this product to be a simple GUI.  Perhaps using Java, or Python.  
+It would need a database of hostnames/IP addresses for the devices I manage.  I would like to be able to input this from a spreadsheet.  
+Have the application read out the table data of IP address and hostname, username and password and import into the application so that 
+I can then search by IP or hostname.  
+The application should also record information over time, and be able to compare differences.  
+The application should also be able to run on a schedule.  I would ideally want to run a schedule every night, where the application launched 
+an ssh session to each device, executed a show run with terminal length 0, and saves the output to a text file with the date.  
+Then, automatically compares the previous day with the current day, and flags an alert if there have been any changes in the configuration.  
+There are 2 reasons why this is required.  Firstly, to detect unauthorized changes.  Secondly, this will be able to detect changes such as 
+an interface being down, that was up yesterday.  Something that would need investigation.
+I would also want several buttons to be able to launch individual commands which will execute against the router, and record the results, 
+and compare if there are any historical records.
+Ideally, these would run as a discovery, when adding a new device.  Commands such as show ip interface brief, show interface status, show 
+interface status err-disabled, show interfaces.  
+When running ad-hoc and on demand, you would choose what your query would be.  
+An example would be a switch port not responding and the indicator light would be orange.  You could click the 
+show interface status err-disabled button, enter the hostname, and you would get a report showing any interfaces that are err-disabled, 
+and the cause of the err-disabled status, such as port security violation, arp violation, dhcp snooping violation.  
+In addition, in the event a user is complaining about very slow downloads, or slow web pages loading.  In my environment, this is an 
+indicator of a saturated link, QoS queuing strategy being overrun, and I would expect in this instance to see an output error drop count 
+incrementing.  Being able to run the command from the click of a button, and perhaps have a box that will run it every 5 minutes for 
+30 minutes, then provide a calculation of the increase, would be ideal.  
+This is also useful data for proof of issue resolution.  Being able to see a drop in the number of packet drops over time, could be used to 
+chart the resolution and prove the resolution for incident notes.
+</pre>
+<h3>Tools and Technologies</h3>
+<pre>
+Tools and technology required would be a server, to host database, application, and files associated with the program.  
+Along with network connectivity and Windows server licensing.
+ACLs on end devices may need to be changed, to permit ssh traffic from the server, if the server will be outside the management IP range.
+It is planned that this application will use Python to run ssh sessions and input commands in a Cisco IOS-XE and IOS format.  
+</pre>
+<h3>Skills Required</h3>
+<pre>
+Learning programming is the main skill required to bring this project to a working test.  A sound knowledge of being able to create a user 
+interface that works, that has the desired features, and has the python scripts behind it ready to be executed.  
+I already have the network engineering and server skills to do this.  What I do not possess is an understanding of programming languages, 
+how these integrate, how they can be used to help me create this.  After 3 weeks at RMIT, I have already learned about loops, which could 
+likely help me achieve a good portion of what I would like to do.  I have a long way to go to be able to build the skills for this, but this 
+is why I am at RMIT.  
+</pre>
+<h3>Outcome</h3>
+<pre>
+If the project is successful, I believe it would make me a better engineer, by enabling me to have more data to assess, and faster access 
+to common troubleshooting.  In addition to this, it will also provide greater security for the network hardware.  As, unscheduled and 
+unapproved changes can be detected, and assessed.  Has a device been compromised, and a static route added to bypass a firewall?  
+I am not sure if this would be a saleable idea or product.  The entire idea is to have a tool which enables me to be better at my job, 
+be more proactive in resolving issues, and provide a better user experience by maintaining network availability, security and performance.  
+
+
+
+</pre>
 
 
 
